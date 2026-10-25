@@ -95,9 +95,11 @@ Arsitektur hibrida yang menggabungkan ekstraksi fitur lokal konvolusional dengan
   * Permutasi dimensi tensor dari $(B, 128, 62)$ menjadi urutan waktu $(B, T'=62, 128)$.
 * **2-Layer Bi-directional LSTM (Bi-LSTM):**
   Memproses urutan fitur sepanjang $T'=62$ langkah waktu dari arah maju ($\overrightarrow{\mathbf{h}}_t$) dan arah mundur ($\overleftarrow{\mathbf{h}}_t$) dengan `hidden_size=64` per arah (2 lapisan, `dropout=0.2`), menghasilkan representasi kontekstual dua arah $\mathbf{h}_t = [\overrightarrow{\mathbf{h}}_t \parallel \overleftarrow{\mathbf{h}}_t] \in \mathbb{R}^{128}$.
-* **Temporal Attention Layer:**
-  Menghitung bobot kepentingan $\alpha_t$ untuk setiap langkah waktu agar jaringan fokus pada segmen gerakan paling informatif dan mengabaikan jeda diam di awal/akhir jendela:
-  $$e_t = \mathbf{w}_a^{\top} \tanh(\mathbf{W}_a \mathbf{h}_t + \mathbf{b}_a), \quad \alpha_t = \frac{\exp(e_t)}{\sum_{\tau=1}^{62} \exp(e_\tau)}, \quad \mathbf{v} = \sum_{t=1}^{62} \alpha_t \mathbf{h}_t$$
+* - **Temporal Attention Layer:** Menghitung bobot kepentingan $\alpha_t$ untuk setiap langkah waktu agar jaringan fokus pada segmen gerakan paling informatif dan mengabaikan jeda diam di awal/akhir jendela:
+  
+$$
+e_t = \mathbf{w}_a^{\top} \tanh(\mathbf{W}_a \mathbf{h}_t + \mathbf{b}_a), \quad \alpha_t = \frac{\exp(e_t)}{\sum_{\tau=1}^{62} \exp(e_\tau)}, \quad \mathbf{v} = \sum_{t=1}^{62} \alpha_t \mathbf{h}_t
+$$
 * **Classifier Head:** `Dropout(0.3)` $\rightarrow$ `Linear(128 -> 4)`.
 
 ---
