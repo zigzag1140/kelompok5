@@ -72,8 +72,7 @@ Sinyal WiFi CSI di lingkungan nyata sangat rentan terhadap *Additive White Gauss
    Meredam derau frekuensi tinggi sepanjang sumbu waktu ($T = 250$) menggunakan frekuensi *cutoff* ternormalisasi $W_n = \omega_c / \omega_{\text{Nyq}} = 0.16$ melalui filter maju-mundur (`scipy.signal.filtfilt`) agar tidak menimbulkan pergeseran fasa ($\Delta\phi(\omega) = 0$):
    $$|H_{LP}(\omega)|^2 = \frac{1}{1 + \left(\frac{\omega}{W_n \cdot \omega_{\text{Nyq}}}\right)^{2N}}, \quad N = 4$$
 3. **Normalisasi Z-Score Bebas Kebocoran (*Zero-Leakage Standardization*):**
-   Menghitung rata-rata $\mu_{\text{train}}$ dan simpangan baku $\sigma_{\text{train}}$ **hanya dari partisi Training**, lalu menormalisasi dan mentransposisikan setiap matriks sampel menjadi tensor $\mathbf{Z}_n \in \mathbb{R}^{90 \times 250}$:
-   $$\mathbf{Z}_{n} = \left( \frac{\tilde{\mathbf{X}}_n - \mu_{\text{train}}}{\sigma_{\text{train}} + 10^{-8}} \right)^{\top}$$
+   Menghitung rata-rata $\mu_{\text{train}}$ dan simpangan baku $\sigma_{\text{train}}$ **hanya dari partisi Training**, lalu menormalisasi dan mentransposisikan setiap matriks sampel menjadi tensor berdimensi 90 baris dan 250 kolom (90 x 250).
 4. **Analisis Spektral *Short-Time Fourier Transform* (STFT):**
    Menghapus komponen *DC offset* ($\bar{x}_c[t] = x_c[t] - \mu_x$) sebelum menerapkan transformasi STFT (jendela Hann $M = 32$, *overlap* $24$) untuk memvisualisasikan konsentrasi energi frekuensi Doppler selama aktivitas berlangsung.
 
