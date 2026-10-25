@@ -237,4 +237,3 @@ Pastikan Python 3.9+ telah terinstal di komputer Anda, kemudian ikuti langkah be
 2. **D. Varga**, "Critical analysis of data leakage in WiFi CSI-based human action recognition using CNNs," *Sensors*, vol. 24, no. 10, p. 3159, May 2024, doi: 10.3390/s24103159.
 3. **D. Varga**, "Mitigating data leakage in a WiFi CSI benchmark for human action recognition," *Sensors*, vol. 24, no. 24, p. 8201, Dec. 2024, doi: 10.3390/s24248201.
 4. **S. Yousefi, H. Narui, S. Dayal, S. Ermon, and S. Valaee**, "A survey on behavior recognition using WiFi channel state information," *IEEE Communications Magazine*, vol. 55, no. 10, pp. 98–104, Oct. 2017.
-5. **Z. Chen, L. Zhang, C. Jiang, Z. Cao, and W. Cui**, "WiFi CSI based passive human activity recognition using attention based BLSTM," *IEEE Transactions on Mobile Computing*, vol. 18, no. 11, pp. 2714–2724, Nov. 2019.
